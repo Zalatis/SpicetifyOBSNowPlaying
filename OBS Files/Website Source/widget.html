@@ -168,18 +168,8 @@
     }
 
     socket.onmessage = function(event) {
-        // console.log(event.data)
         var obj = JSON.parse(event.data);
         console.log(obj);
-        // var title = obj.TITLE;
-        // var artists = obj.ARTIST;
-        // var album = obj.ALBUM;
-        // var cover = obj.COVER;
-        // var position = obj.POSITION;
-        // var duration = obj.DURATION;
-        // if (obj.STATE != last_state) {
-        //     document.querySelector(".widget").classList.toggle('hidden');
-        // }
         if (last_state == '') {
             if (obj.STATE != 1) {
                 document.querySelector(".widget").classList.add('hidden');
@@ -209,10 +199,10 @@
         if (obj.ARTIST != last_artists) {
             var artistsLine = '';
             if (obj.ARTIST != '') {
-                artistsLine += "<i>de</i> " + obj.ARTIST + " ";
+                artistsLine += "<i>by</i> " + obj.ARTIST + " ";
             }
             if (obj.ALBUM != undefined && obj.ALBUM != obj.TITLE) {
-                artistsLine += "<i>dans</i> " + obj.ALBUM;
+                artistsLine += "<i>in</i> " + obj.ALBUM;
             }
             artistsLine == '' ? document.getElementById('artist').innerHTML = "&nbsp;" : document.getElementById('artist').innerHTML = artistsLine
         }
@@ -247,76 +237,6 @@
     socket.onerror = function(error) {
         console.log(`[error] ${error.message}`);
     };
-
-
-
-    
-    // function fetch_data() {
-    //     fetch('http://localhost:1608/')
-    //         .then(response => response.json())
-    //         .then(data => {
-    //             // data now contains the json object with song metadata
-
-
-    //             // artist list
-    //             var artists = '';
-    //             var array = data['artists'] || []; // in some cases no artist is known/submitted
-    //             for (var i = 0; i < array.length; i++) {
-    //                 artists += array[i];
-    //                 if (i < array.length - 1)
-    //                     artists += ', ';
-    //             }
-
-    //             if (data['title'] != last_title)
-    //                 document.getElementById('title').innerText = data['title'];
-
-    //             if (data['cover_url'] == undefined ||
-    //                 data['cover_url'] == '') {
-    //                 document.getElementById('cover').style.backgroundImage = `url(${placeholder}})`;
-    //             } else if (data['cover_url'] !== last_cover || // Refresh only if meta data suggests that the cover changed
-    //                 (data['title'] !== last_title ||    // When using MPD the path is always the cover path configured in tuna
-    //                     artists !== last_artists))           // which means it won't change so we check against other data
-    //             {
-    //                 // Random number at the end is to prevent caching
-    //                 setTimeout(() => {
-    //                     document.getElementById('cover').style.backgroundImage = `url(${data['cover_url'] + '?' + new Date().getTime()})`;
-    //                     last_cover = data['cover_url'];
-    //                 }, 700);
-
-    //             }
-
-                // if (artists != last_artists) {
-                //     var artistLine = '';
-                //     if (artists != '')
-                //         artistLine += "<i>de</i> " + artists + " ";
-
-                //     // sometimes there is an album with no artist, we can still allow that
-                //     if (data['album'] != undefined &&
-                //         data['album'] != artists) // Some singles have the artist as the album, which looks strange with the other subtitle
-                //         artistLine += "<i>dans</i> " + data['album'];
-
-                //     // use &nbsp; in case we have neither artist nor album
-                //     // space is considered empty element, &nbsp; is not
-                //     artistLine == '' ? document.getElementById('artist').innerHTML = "&nbsp;" : document.getElementById('artist').innerHTML = artistLine
-                // }
-
-    //             var length = data['duration'];
-    //             var progress = data['progress'];
-    //             document.getElementById('progress').style.width = (progress / length) * 100 + '%';
-
-    //             // Timestamps
-    //             document.getElementById('length').innerText = format_ms(length);
-    //             document.getElementById('time-passed').innerText = format_ms(progress);
-
-    //             last_artists = artists;
-    //             last_title = data['title'];
-    //         })
-    //         .catch(function () {
-    //             // Do nothing
-    //         });
-    // }
-
-    // setInterval(fetch_data, 100);
 </script>
 
 </html>
