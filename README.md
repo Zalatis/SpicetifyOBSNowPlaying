@@ -7,7 +7,7 @@ Tired of using the Spotify API to have a NowPlaying on your Stream? Use this Spo
 # Requirements : 
 - Have Spotify installed
 - Have Spicetify installed 
-[My Spicetify Installer (Windows)](https://github.com/Zalatis/Install-spicetify-cli "My Spicetify Installer (Windows)")
+[My Spicetify Installer (Windows)](https://github.com/Zalatis/Install-spicetify-cli "My Spicetify Installer (Windows)") |
 [Official Spicetify repo](https://github.com/spicetify/spicetify-cli "Official Spicetify repo")
 - Have [Python](https://www.python.org/downloads/ "Python") Installed
 
