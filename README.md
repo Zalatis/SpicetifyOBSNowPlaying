@@ -22,4 +22,4 @@ Tired of using the Spotify API to have a NowPlaying on your Stream? Use this Spo
 # Credits : 
 - obsnowplaying.js is based on [webnowplaying.js default extension of Spicetify](https://github.com/spicetify/spicetify-cli/blob/master/Extensions/webnowplaying.js "webnowplaying.js default extension of Spicetify")
 - widget.html based on [Tuna widget.html](https://github.com/univrsal/tuna "Tuna widget.html")
-- And a huge thanks to [@ohitstom] (https://www.github.com/ohitstom) for the help on the OBS Script
+- And a huge thanks to [@ohitstom] (https://www.github.com/ohitstom "@ohitstom") for the help on the OBS Script
