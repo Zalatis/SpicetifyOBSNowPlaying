@@ -16,7 +16,7 @@ Tired of using the Spotify API to have a NowPlaying on your Stream? Use this Spo
 - Open a terminal and do `spicetify config extensions obsnowplaying.js` then `spicetify apply`
 - On OBS click on Tools -> Scripts and setup your Python Path
 - Extract the content of OBS Files wherever you want on your PC and add `OBS Files\Script\SpicetifyOBS.py` as a script
-- You can now add OBS Files\Website Source\widget.html as a website source on OBS
+- You can now add `OBS Files\Website Source\widget.html` as a website source on OBS
 - Close and open back OBS and you're done 🙂
 
 # Credits : 
