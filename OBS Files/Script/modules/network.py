@@ -47,7 +47,6 @@ class startServer():
             return port
 
     async def handler(self, websocket, path):
-        print("A client just connected")
         connected.add(websocket)
         try:
             async for message in websocket:
@@ -55,8 +54,7 @@ class startServer():
                 for conn in connected:
                     if conn != websocket:
                         await conn.send(message)
-        except websockets.exceptions.ConnectionClosedError:
-            print("Client disconnected, attempting to reconnect.")
+        except:
             return
             
     async def initialize(self):
