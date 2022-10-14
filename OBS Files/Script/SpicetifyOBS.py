@@ -6,7 +6,7 @@ from modules import network
 def script_description():
   return """
   SpicetifyOBS:
-      Reads websocket data from the webnowplaying extension.
+      Reads websocket data from the obsnowplaying extension.
       This data includes but is not limited to: 
       Title, 
       album, 
