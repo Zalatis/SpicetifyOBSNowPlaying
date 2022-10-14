@@ -1,7 +1,7 @@
 import obspython as obs
 import threading
 import sys
-from modules import network, interface
+from modules import network
 
 def script_description():
   return """
@@ -15,7 +15,6 @@ def script_description():
   """   
 
 def thread():
-    # interface.initialize()
     thread = threading.Thread(target=network.startServer)
     thread.daemon = True
     thread.start()
