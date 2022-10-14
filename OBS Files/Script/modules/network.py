@@ -26,20 +26,25 @@ class startServer():
             stdout=asyncio.subprocess.PIPE,
             stderr=asyncio.subprocess.STDOUT,
             creationflags=subprocess.CREATE_NO_WINDOW
-        ) 
+        )
         while self.process_pid_running(proc.pid):
-            line = str(await proc.stdout.readline(), encoding="utf-8")
+            line = str(await proc.stdout.readline())
             if line.strip() != "":
                 output = line.strip()
-        
-        with open(output, 'r') as f:
-            for line in f:
-                if 'WebSocket' in line:
-                    string = line.strip()
-                    index = string.rindex('/')
-                    port = string[index-4:index]
-                    print(f"port: {port} found!")
-                    return port
+
+        try:
+            with open(output, 'r') as f:
+                for line in f:
+                    if 'WebSocket' in line:
+                        string = line.strip()
+                        index = string.rindex('/')
+                        port = string[index-4:index]
+                        print(f"port: {port} found!")
+                        return port
+        except:
+            print("Impossible to determine port, fallback to default")
+            port = 1111
+            return port
 
     async def handler(self, websocket, path):
         print("A client just connected")
