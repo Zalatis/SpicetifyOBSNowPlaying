@@ -49,7 +49,6 @@
 
     function updateInfo() {
         if (!Spicetify.Player.data && currState !== 0) {
-            ws.send("STATE:" + 0);
             currState = 0;
             return;
         }
