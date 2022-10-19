@@ -12,7 +12,7 @@ Tired of using the Spotify API to have a NowPlaying on your Stream? Use this Spo
 - Have [Python](https://www.python.org/downloads/ "Python") Installed and do `pip install websockets psutil`
 
 # Installation : 
-- Put `obsnowplaying.js` that is inside the `Spicetify Extension` to this path : `C:\Users\<Users>\AppData\Roaming\spicetify\Extensions`
+- Put `obsnowplaying.js` that is inside the `Spicetify Extension` to this path : `C:\Users\<User>\AppData\Roaming\spicetify\Extensions`
 - Open a terminal and do `spicetify config extensions obsnowplaying.js` then `spicetify apply`
 - On OBS click on Tools -> Scripts and setup your Python Path
 - Extract the content of OBS Files wherever you want on your PC and add `OBS Files\Script\SpicetifyOBS.py` as a script
