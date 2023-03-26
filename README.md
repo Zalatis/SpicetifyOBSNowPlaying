@@ -9,7 +9,7 @@ Tired of using the Spotify API to have a NowPlaying on your Stream? Use this Spo
 - Have Spicetify installed 
 [My Spicetify Installer (Windows)](https://github.com/Zalatis/Install-spicetify-cli "My Spicetify Installer (Windows)") |
 [Official Spicetify repo](https://github.com/spicetify/spicetify-cli "Official Spicetify repo")
-- Have [Python](https://www.python.org/downloads/ "Python 3.10.9") Installed and do `pip install websockets psutil`
+- Have [Python 3.10.9](https://www.python.org/downloads/ "Python 3.10.9") Installed and do `pip install websockets psutil`
 
 # Installation : 
 - Put `obsnowplaying.js` that is inside the `Spicetify Extension` to this path : `C:\Users\<User>\AppData\Roaming\spicetify\Extensions`
