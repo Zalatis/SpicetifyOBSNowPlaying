@@ -14,48 +14,18 @@
     let ws;
     let currState = 0;
     const storage = {};
-    function updateStorage(data) {
-        if (!data?.item?.metadata) {
-            return;
-        }
-        const meta = data.item.metadata;
-        storage.TITLE = meta.title;
-        storage.ALBUM = meta.album_title;
-        storage.DURATION = parseInt(meta.duration);
-        storage.STATE = !meta.is_paused ? 1 : 2;
-        storage.ARTIST = meta.artist_name;
-        storage.POSITION = Spicetify.Player.getProgress();
-        let artistCount = 1;
-        while (meta["artist_name:" + artistCount]) {
-            storage.ARTIST += ", " + meta["artist_name:" + artistCount];
-            artistCount++;
-        }
-        if (!storage.ARTIST) {
-            storage.ARTIST = meta.album_title; // Podcast
-        }
-
-        const cover = meta.image_xlarge_url;
-        if (cover?.indexOf("localfile") === -1) {
-            storage.COVER = "https://i.scdn.co/image/" + cover.substring(cover.lastIndexOf(":") + 1);
-        } else {
-            storage.COVER = "";
-        }
-    }
-
-    const data = Spicetify.Player;
-    updateStorage(data);
-
     function updateInfo() {
         if (!Spicetify.Player.data && currState !== 0) {
             currState = 0;
             return;
         }
 
+        const data = Spicetify.Player.data;
         const meta = Spicetify.Player.data.item.metadata;
         storage.TITLE = meta.title;
         storage.ALBUM = meta.album_title;
         storage.DURATION = parseInt(meta.duration);
-        storage.STATE = !data.is_paused ? 1 : 2;
+        storage.STATE = !data.isPaused ? 1 : 2;
         storage.ARTIST = meta.artist_name;
         storage.POSITION = Spicetify.Player.getProgress();
         let artistCount = 1;
