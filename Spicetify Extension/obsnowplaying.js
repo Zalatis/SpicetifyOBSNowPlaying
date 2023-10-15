@@ -15,17 +15,16 @@
     let currState = 0;
     const storage = {};
     function updateStorage(data) {
-        if (!data?.track?.metadata) {
+        if (!data?.item?.metadata) {
             return;
         }
-        const meta = data.track.metadata;
+        const meta = data.item.metadata;
         storage.TITLE = meta.title;
         storage.ALBUM = meta.album_title;
         storage.DURATION = parseInt(meta.duration);
-        storage.STATE = !data.is_paused ? 1 : 2;
-        storage.REPEAT = data.options.repeating_track ? 2 : data.options.repeating_context ? 1 : 0;
-        storage.SHUFFLE = data.options.shuffling_context ? 1 : 0;
+        storage.STATE = !meta.is_paused ? 1 : 2;
         storage.ARTIST = meta.artist_name;
+        storage.POSITION = Spicetify.Player.getProgress();
         let artistCount = 1;
         while (meta["artist_name:" + artistCount]) {
             storage.ARTIST += ", " + meta["artist_name:" + artistCount];
@@ -35,8 +34,6 @@
             storage.ARTIST = meta.album_title; // Podcast
         }
 
-        Spicetify.Platform.LibraryAPI.contains(data.track.uri).then(([added]) => (storage.RATING = added ? 5 : 0));
-
         const cover = meta.image_xlarge_url;
         if (cover?.indexOf("localfile") === -1) {
             storage.COVER = "https://i.scdn.co/image/" + cover.substring(cover.lastIndexOf(":") + 1);
@@ -45,7 +42,8 @@
         }
     }
 
-    Spicetify.CosmosAsync.sub("sp://player/v2/main", updateStorage);
+    const data = Spicetify.Player;
+    updateStorage(data);
 
     function updateInfo() {
         if (!Spicetify.Player.data && currState !== 0) {
@@ -53,8 +51,31 @@
             return;
         }
 
+        const meta = Spicetify.Player.data.item.metadata;
+        storage.TITLE = meta.title;
+        storage.ALBUM = meta.album_title;
+        storage.DURATION = parseInt(meta.duration);
+        storage.STATE = !data.is_paused ? 1 : 2;
+        storage.ARTIST = meta.artist_name;
         storage.POSITION = Spicetify.Player.getProgress();
-        storage.VOLUME = Math.round(Spicetify.Player.getVolume() * 100);
+        let artistCount = 1;
+        while (meta["artist_name:" + artistCount]) {
+            storage.ARTIST += ", " + meta["artist_name:" + artistCount];
+            artistCount++;
+        }
+        if (!storage.ARTIST) {
+            storage.ARTIST = meta.album_title; // Podcast
+        }
+        if (!storage.ARTIST) {
+            storage.ARTIST = meta.album_title; // Podcast
+        }
+
+        const cover = meta.image_xlarge_url;
+        if (cover?.indexOf("localfile") === -1) {
+            storage.COVER = "https://i.scdn.co/image/" + cover.substring(cover.lastIndexOf(":") + 1);
+        } else {
+            storage.COVER = "";
+        }
 
         for (const field in storage) {
             try {
@@ -65,7 +86,6 @@
                 }
             } catch (e) {
                 ws.send(`Error:Error updating ${field} for Spotify Desktop`);
-                ws.send("ErrorD:" + e);
             }
         }
     }
