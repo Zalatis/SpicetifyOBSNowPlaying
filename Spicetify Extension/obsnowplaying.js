@@ -36,9 +36,6 @@
         if (!storage.ARTIST) {
             storage.ARTIST = meta.album_title; // Podcast
         }
-        if (!storage.ARTIST) {
-            storage.ARTIST = meta.album_title; // Podcast
-        }
 
         const cover = meta.image_xlarge_url;
         if (cover?.indexOf("localfile") === -1) {
