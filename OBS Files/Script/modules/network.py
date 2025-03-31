@@ -46,7 +46,7 @@ class startServer():
             port = 1111
             return port
 
-    async def handler(self, websocket, path):
+    async def handler(self, websocket):
         connected.add(websocket)
         try:
             async for message in websocket:
